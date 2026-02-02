@@ -31,14 +31,13 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, userRole }) =>
   ];
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-500 ${
-      scrolled ? 'bg-white/95 backdrop-blur-md shadow-2xl shadow-slate-200/50 py-3' : isHome ? 'bg-transparent py-6' : 'bg-white py-4 shadow-sm'
-    }`}>
+    <nav className={`fixed w-full z-[1000] transition-all duration-500 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-2xl shadow-slate-200/50 py-3' : isHome ? 'bg-transparent py-6' : 'bg-white py-4 shadow-sm'
+      }`}>
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         <div className="flex justify-between items-center">
           {/* Logo Branding - Fixed Visibility */}
-          <div 
-            className="flex items-center gap-4 cursor-pointer group" 
+          <div
+            className="flex items-center gap-4 cursor-pointer group"
             onClick={() => onNavigate('home')}
           >
             <div className={`p-2.5 rounded-2xl transition-all duration-300 ${forceDarkText ? 'bg-blue-900 shadow-xl shadow-blue-100' : 'bg-white/10 backdrop-blur-xl border border-white/20'}`}>
@@ -58,23 +57,21 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, userRole }) =>
               <button
                 key={link.path}
                 onClick={() => onNavigate(link.path)}
-                className={`px-6 py-2.5 text-[11px] font-black uppercase tracking-[0.15em] transition-all rounded-xl ${
-                  currentPage === link.path 
+                className={`px-6 py-2.5 text-[11px] font-black uppercase tracking-[0.15em] transition-all rounded-xl ${currentPage === link.path
                     ? forceDarkText ? 'text-blue-900 bg-blue-50' : 'text-white bg-white/10'
                     : forceDarkText ? 'text-slate-500 hover:text-blue-900 hover:bg-slate-50' : 'text-slate-300 hover:text-white hover:bg-white/5'
-                }`}
+                  }`}
               >
                 {link.name}
               </button>
             ))}
             <div className={`h-8 w-px mx-4 transition-colors ${forceDarkText ? 'bg-slate-100' : 'bg-white/10'}`}></div>
-            <button 
+            <button
               onClick={() => onNavigate('contact')}
-              className={`text-[11px] font-black uppercase tracking-[0.15em] px-8 py-3.5 rounded-xl transition-all shadow-xl ${
-                forceDarkText 
-                  ? 'bg-amber-500 text-slate-950 hover:bg-amber-400 shadow-amber-500/20' 
+              className={`text-[11px] font-black uppercase tracking-[0.15em] px-8 py-3.5 rounded-xl transition-all shadow-xl ${forceDarkText
+                  ? 'bg-amber-500 text-slate-950 hover:bg-amber-400 shadow-amber-500/20'
                   : 'bg-amber-500 text-slate-950 hover:bg-amber-400 shadow-amber-500/20'
-              }`}
+                }`}
             >
               Enquire Now
             </button>
@@ -100,15 +97,14 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, userRole }) =>
               <button
                 key={link.path}
                 onClick={() => { onNavigate(link.path); setIsOpen(false); }}
-                className={`block w-full text-left px-6 py-5 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] ${
-                  currentPage === link.path ? 'bg-blue-50 text-blue-900' : 'text-slate-600'
-                }`}
+                className={`block w-full text-left px-6 py-5 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] ${currentPage === link.path ? 'bg-blue-50 text-blue-900' : 'text-slate-600'
+                  }`}
               >
                 {link.name}
               </button>
             ))}
             <div className="pt-8">
-               <button 
+              <button
                 onClick={() => { onNavigate('contact'); setIsOpen(false); }}
                 className="w-full bg-blue-900 text-white text-xs font-black uppercase tracking-[0.2em] py-5 rounded-2xl shadow-2xl"
               >

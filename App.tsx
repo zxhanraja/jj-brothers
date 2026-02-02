@@ -165,7 +165,7 @@ const App: React.FC = () => {
       />
 
       <div className={`flex flex-col min-h-screen ${loading ? 'overflow-hidden' : 'smooth-entry'}`}>
-        <main className="flex-grow flex flex-col pt-[72px]">
+        <main className={`flex-grow flex flex-col ${currentPage !== 'home' ? 'pt-[72px]' : ''}`}>
           <Suspense fallback={<PageLoader />}>
             {renderPage()}
           </Suspense>
