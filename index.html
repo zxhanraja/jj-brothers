@@ -66,6 +66,32 @@
       animation: slow-zoom 20s ease-in-out infinite alternate;
     }
 
+    @keyframes shimmer {
+      0% {
+        transform: translateX(-100%);
+      }
+
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    @keyframes smooth-entry {
+      from {
+        opacity: 0;
+        transform: scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .smooth-entry {
+      animation: smooth-entry 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
     /* Infinite Loop Scroll for Reviews and Logos */
     @keyframes scroll {
       0% {

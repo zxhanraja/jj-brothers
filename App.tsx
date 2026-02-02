@@ -18,9 +18,8 @@ const AdminLogin = lazy(() => import('./pages/AdminLogin'));
 const AIChatBot = lazy(() => import('./components/AIChatBot'));
 
 const PageLoader = () => (
-  <div className="flex-grow flex flex-col items-center justify-center min-h-[60vh] text-slate-400">
-    <Loader2 className="w-8 h-8 animate-spin text-amber-500 mb-4" />
-    <span className="text-[10px] font-black uppercase tracking-widest">Loading...</span>
+  <div className="fixed top-0 left-0 right-0 h-1 z-[10001] bg-slate-900 overflow-hidden">
+    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-500 to-transparent -translate-x-full animate-[shimmer_1.5s_infinite]"></div>
   </div>
 );
 
@@ -40,6 +39,7 @@ const App: React.FC = () => {
     whatsapp: "+91 87772 45016"
   });
   const [loading, setLoading] = useState(true);
+  const [componentReady, setComponentReady] = useState(false);
 
   useEffect(() => {
     // Check for existing admin session
@@ -51,8 +51,24 @@ const App: React.FC = () => {
       setAdminSession(session);
     });
 
-    // Initial Data Fetch
-    fetchInitialData();
+    // Initial Data & Component Fetch
+    const init = async () => {
+      try {
+        await Promise.all([
+          fetchInitialData(),
+          // Eagerly load Home to avoid Suspense flash on first render
+          import('./pages/Home')
+        ]);
+      } catch (err) {
+        console.error("Init Error:", err);
+      } finally {
+        setComponentReady(true);
+        // Small delay for smooth exit
+        setTimeout(() => setLoading(false), 800);
+      }
+    };
+
+    init();
 
     return () => subscription.unsubscribe();
   }, []);
@@ -70,8 +86,6 @@ const App: React.FC = () => {
       if (configData.data) setSiteConfig(configData.data);
     } catch (err) {
       console.error("Fetch Error:", err);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -86,12 +100,18 @@ const App: React.FC = () => {
     setCurrentPage(page);
   };
 
-  if (loading) {
+  if (loading || !componentReady) {
     return (
-      <div className="h-screen w-full flex flex-col items-center justify-center bg-slate-950 text-white">
-        <Loader2 className="w-12 h-12 animate-spin text-amber-500 mb-6" />
-        <h1 className="text-xl font-black uppercase tracking-[0.3em]">JJ Brothers</h1>
-        <p className="text-blue-100/40 text-[10px] font-bold uppercase tracking-widest mt-2">Connecting Global Opportunities</p>
+      <div className="fixed inset-0 z-[10000] flex flex-col items-center justify-center bg-slate-950 text-white transition-opacity duration-1000">
+        <div className="relative mb-12">
+          <div className="absolute inset-0 bg-blue-500 rounded-full blur-[60px] opacity-20 animate-pulse"></div>
+          <Loader2 className="w-16 h-16 animate-spin text-amber-500 relative z-10" />
+        </div>
+        <h1 className="text-3xl font-black uppercase tracking-[0.4em]">JJ Brothers</h1>
+        <div className="w-48 h-[1px] bg-white/10 mt-8 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500 to-transparent -translate-x-full animate-[shimmer_2s_infinite]"></div>
+        </div>
+        <p className="text-blue-100/40 text-[11px] font-bold uppercase tracking-[0.3em] mt-8">Global Career Pathways</p>
       </div>
     );
   }
@@ -137,7 +157,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className={`flex flex-col min-h-screen ${loading ? 'overflow-hidden' : 'smooth-entry'}`}>
       <Navbar
         currentPage={currentPage}
         onNavigate={navigate}
