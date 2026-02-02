@@ -18,8 +18,11 @@ const AdminLogin = lazy(() => import('./pages/AdminLogin'));
 const AIChatBot = lazy(() => import('./components/AIChatBot'));
 
 const PageLoader = () => (
-  <div className="fixed top-0 left-0 right-0 h-1 z-[10001] bg-slate-900 overflow-hidden">
-    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-500 to-transparent -translate-x-full animate-[shimmer_1.5s_infinite]"></div>
+  <div className="flex-grow min-h-screen bg-slate-950 flex items-center justify-center">
+    <div className="relative">
+      <div className="absolute inset-0 bg-blue-500 rounded-full blur-[60px] opacity-10 animate-pulse"></div>
+      <Loader2 className="w-10 h-10 animate-spin text-amber-500/20 relative z-10" />
+    </div>
   </div>
 );
 
@@ -164,10 +167,12 @@ const App: React.FC = () => {
         userRole={isLoggedIn ? 'CANDIDATE' : 'GUEST'}
       />
 
-      <div className={`flex flex-col min-h-screen ${loading ? 'overflow-hidden' : 'smooth-entry'}`}>
-        <main className={`flex-grow flex flex-col ${currentPage !== 'home' ? 'pt-[72px]' : ''}`}>
+      <div className={`flex flex-col min-h-screen ${loading ? 'opacity-0' : 'smooth-entry'}`}>
+        <main className={`flex-grow flex flex-col ${currentPage !== 'home' ? 'pt-[72px]' : ''} bg-slate-950`}>
           <Suspense fallback={<PageLoader />}>
-            {renderPage()}
+            <div className="animate-in fade-in duration-700">
+              {renderPage()}
+            </div>
           </Suspense>
         </main>
 
