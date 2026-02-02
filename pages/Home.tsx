@@ -159,7 +159,12 @@ const Home: React.FC<HomeProps> = ({ onNavigate, testimonials }) => {
             <div className="w-full lg:w-2/5 relative animate-fade-in-up delay-300">
               <div className="relative rounded-[3rem] md:rounded-[5rem] overflow-hidden shadow-2xl border border-white/10 group aspect-[4/5] transform hover:scale-[1.02] transition-transform duration-700">
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent z-10"></div>
-                <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800" className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700" alt="Consultancy Hub" />
+                <img
+                  src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800"
+                  className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700"
+                  alt="Consultancy Hub"
+                  decoding="async"
+                />
                 <div className="absolute bottom-10 left-10 z-20">
                   <div className="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-3xl">
                     <p className="text-white font-black text-2xl tracking-tighter uppercase mb-1">Elite Global Partners</p>
@@ -198,6 +203,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate, testimonials }) => {
                   src={`https://logo.clearbit.com/${logo.domain}?size=200`}
                   alt={logo.name}
                   loading="lazy"
+                  decoding="async"
                   className="h-12 md:h-16 w-auto object-contain max-w-[140px]"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
@@ -224,7 +230,13 @@ const Home: React.FC<HomeProps> = ({ onNavigate, testimonials }) => {
             <div className="w-full lg:w-1/2 relative group">
               <div className="flex gap-6">
                 <div className="flex-1 relative z-10 rounded-3xl md:rounded-[3rem] overflow-hidden border border-white/20 shadow-3xl transform group-hover:-rotate-2 transition-transform duration-700 bg-slate-900">
-                  <img src="https://ik.imagekit.io/ioktbcewp/dd44a37b-8453-4f63-bc0d-4aae1b50b894%20(1).jpg?tr=e-grayscale,e-contrast-50,e-sharpen-20" alt="Zeeshan Raja" className="w-full aspect-[3/4] object-cover contrast-150 brightness-110 group-hover:scale-105 transition-all duration-700" />
+                  <img
+                    src="https://ik.imagekit.io/ioktbcewp/dd44a37b-8453-4f63-bc0d-4aae1b50b894%20(1).jpg?tr=e-grayscale,e-contrast-50,e-sharpen-20,w-400"
+                    alt="Zeeshan Raja"
+                    className="w-full aspect-[3/4] object-cover contrast-150 brightness-110 group-hover:scale-105 transition-all duration-700"
+                    loading="lazy"
+                    decoding="async"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent"></div>
                   <div className="absolute bottom-4 md:bottom-10 left-4 md:left-8 right-4 md:right-8 text-center">
                     <h3 className="text-sm md:text-2xl font-black text-white uppercase tracking-tighter">Zeeshan Raja</h3>
@@ -232,7 +244,13 @@ const Home: React.FC<HomeProps> = ({ onNavigate, testimonials }) => {
                   </div>
                 </div>
                 <div className="flex-1 relative z-10 rounded-3xl md:rounded-[3rem] overflow-hidden border border-white/20 shadow-3xl transform group-hover:rotate-2 translate-y-6 md:translate-y-12 transition-transform duration-700 bg-slate-900">
-                  <img src="https://ik.imagekit.io/ioktbcewp/0e614457-617b-4453-b28e-c052d4c21e05%20(1).jpg?tr=e-grayscale,e-contrast-50,e-sharpen-20" alt="Javed Raja" className="w-full aspect-[3/4] object-cover contrast-150 brightness-110 group-hover:scale-105 transition-all duration-700" />
+                  <img
+                    src="https://ik.imagekit.io/ioktbcewp/0e614457-617b-4453-b28e-c052d4c21e05%20(1).jpg?tr=e-grayscale,e-contrast-50,e-sharpen-20,w-400"
+                    alt="Javed Raja"
+                    className="w-full aspect-[3/4] object-cover contrast-150 brightness-110 group-hover:scale-105 transition-all duration-700"
+                    loading="lazy"
+                    decoding="async"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent"></div>
                   <div className="absolute bottom-4 md:bottom-10 left-4 md:left-8 right-4 md:right-8 text-center">
                     <h3 className="text-sm md:text-2xl font-black text-white uppercase tracking-tighter">Javed Raja</h3>
@@ -295,9 +313,11 @@ const Home: React.FC<HomeProps> = ({ onNavigate, testimonials }) => {
               <div key={`${visa.id}-${i}`} className="w-[300px] md:w-[420px] bg-white rounded-[2.5rem] md:rounded-[3rem] p-4 border border-slate-200/60 shadow-xl hover:shadow-2xl transition-all duration-500 group">
                 <div className="relative aspect-[4/3] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden">
                   <img
-                    src={visa.img}
+                    src={`${visa.img}&w=600`}
                     alt={visa.country}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="absolute bottom-6 left-6 right-6">
@@ -352,7 +372,13 @@ const Home: React.FC<HomeProps> = ({ onNavigate, testimonials }) => {
                 <div key={`${review.id}-${i}`} className="w-[300px] md:w-[400px] bg-white rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-10 border border-slate-100 shadow-xl shadow-slate-200/20 relative group transition-all hover:scale-105 duration-500">
                   <div className="flex items-center justify-between mb-8">
                     <div className="flex items-center gap-4 md:gap-5">
-                      <img src={review.avatar} className="w-12 h-12 md:w-14 md:h-14 rounded-full border-2 border-white shadow-xl object-cover" alt={review.name} />
+                      <img
+                        src={review.avatar}
+                        className="w-12 h-12 md:w-14 md:h-14 rounded-full border-2 border-white shadow-xl object-cover"
+                        alt={review.name}
+                        loading="lazy"
+                        decoding="async"
+                      />
                       <div>
                         <h4 className="text-slate-950 font-black text-sm md:text-base leading-tight capitalize">{review.name}</h4>
                         <p className="text-slate-400 font-bold text-[9px] md:text-[10px] mt-1 uppercase tracking-widest">{review.timeAgo}</p>
@@ -395,7 +421,13 @@ const Home: React.FC<HomeProps> = ({ onNavigate, testimonials }) => {
               return (
                 <div key={countryName} className="flag-container bg-white p-8 lg:p-12 rounded-[2.5rem] shadow-sm border border-slate-100 flex flex-col items-center gap-8 group hover:bg-amber-400 hover:scale-105 hover:shadow-2xl hover:shadow-amber-200 transition-all duration-300 cursor-pointer text-center">
                   <div className="w-24 h-24 lg:w-32 lg:h-32 rounded-full bg-slate-50 flex items-center justify-center overflow-hidden border-4 border-white shadow-inner transition-transform duration-500 group-hover:scale-110">
-                    <img src={`https://flagcdn.com/w160/${country.code.toLowerCase()}.png`} alt={countryName} className="w-16 lg:w-20 object-contain animate-flag" />
+                    <img
+                      src={`https://flagcdn.com/w160/${country.code.toLowerCase()}.png`}
+                      alt={countryName}
+                      className="w-16 lg:w-20 object-contain animate-flag"
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </div>
                   <div>
                     <h4 className="text-slate-900 font-black text-lg lg:text-xl uppercase tracking-tighter transition-colors group-hover:text-slate-950">{countryName}</h4>
