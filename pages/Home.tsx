@@ -1,5 +1,5 @@
 
-import React, { useState, useMemo, useRef } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import {
   Search, MapPin, Briefcase, Globe, Award,
   ShieldCheck, CheckCircle, Headphones, Star,
@@ -115,15 +115,27 @@ const Home: React.FC<HomeProps> = ({ onNavigate, testimonials }) => {
     { name: 'Airbnb', domain: 'airbnb.com' }
   ];
 
-  const loopedLogos = [...partnerLogos, ...partnerLogos];
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const loopedLogos = useMemo(() => {
+    const logos = isMobile ? partnerLogos.slice(0, 12) : partnerLogos;
+    return [...logos, ...logos];
+  }, [isMobile]);
 
   return (
     <div className="w-full bg-white">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center overflow-hidden bg-slate-950 pt-20">
         <div className="absolute inset-0 -z-10 pointer-events-none">
-          <div className="absolute top-0 right-0 w-full lg:w-[1000px] h-full lg:h-[1000px] bg-blue-600/10 rounded-full blur-[180px] -translate-y-1/2 lg:translate-x-1/4"></div>
-          <div className="absolute bottom-0 left-0 w-full lg:w-[800px] h-full lg:h-[800px] bg-amber-500/5 rounded-full blur-[150px] translate-y-1/4 lg:-translate-x-1/4"></div>
+          <div className="absolute top-0 right-0 w-full lg:w-[1000px] h-full lg:h-[1000px] bg-blue-600/10 rounded-full blur-[40px] md:blur-[180px] -translate-y-1/2 lg:translate-x-1/4 opacity-50 md:opacity-100"></div>
+          <div className="absolute bottom-0 left-0 w-full lg:w-[800px] h-full lg:h-[800px] bg-amber-500/5 rounded-full blur-[40px] md:blur-[150px] translate-y-1/4 lg:-translate-x-1/4 opacity-50 md:opacity-100"></div>
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.05]"></div>
         </div>
 
@@ -224,7 +236,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate, testimonials }) => {
 
       {/* Owner & Vision Section - PREMIUM B&W PHOTOS */}
       <section className="py-32 bg-slate-950 relative overflow-hidden">
-        <div className="absolute inset-0 bg-blue-600/5 blur-[150px] -z-10"></div>
+        <div className="absolute inset-0 bg-blue-600/5 blur-[40px] md:blur-[150px] -z-10"></div>
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col lg:flex-row items-center gap-20">
             <div className="w-full lg:w-1/2 relative group">
@@ -258,8 +270,8 @@ const Home: React.FC<HomeProps> = ({ onNavigate, testimonials }) => {
                   </div>
                 </div>
               </div>
-              <div className="absolute -top-10 -right-10 w-40 h-40 bg-amber-500/20 rounded-full blur-3xl"></div>
-              <div className="absolute -bottom-10 -left-10 w-60 h-60 bg-blue-600/10 rounded-full blur-3xl"></div>
+              <div className="absolute -top-10 -right-10 w-40 h-40 bg-amber-500/20 rounded-full blur-xl md:blur-3xl"></div>
+              <div className="absolute -bottom-10 -left-10 w-60 h-60 bg-blue-600/10 rounded-full blur-xl md:blur-3xl"></div>
             </div>
 
             <div className="w-full lg:w-1/2 space-y-10 text-center lg:text-left mt-16 lg:mt-0">
@@ -441,7 +453,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate, testimonials }) => {
 
       {/* Trust Statistics Bar */}
       <section className="bg-slate-950 py-16 lg:py-24 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-blue-600/5 blur-[100px] -z-10"></div>
+        <div className="absolute inset-0 bg-blue-600/5 blur-[40px] md:blur-[100px] -z-10"></div>
         <div className="max-w-7xl mx-auto flex flex-wrap justify-center lg:justify-between items-center gap-12 lg:gap-16">
           {TRUST_STATS.map((stat, i) => (
             <div key={i} className="flex-1 min-w-[160px] group text-center lg:text-left">
@@ -477,7 +489,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate, testimonials }) => {
               </div>
             </div>
             <div className="bg-slate-950 rounded-[4rem] p-12 lg:p-24 relative overflow-hidden shadow-2xl border border-white/5">
-              <div className="absolute top-0 right-0 w-80 h-80 bg-blue-600/10 rounded-full blur-[120px]"></div>
+              <div className="absolute top-0 right-0 w-80 h-80 bg-blue-600/10 rounded-full blur-[40px] md:blur-[120px]"></div>
               <div className="relative z-10">
                 <h3 className="text-3xl lg:text-4xl font-black text-white mb-10 tracking-tight uppercase">Evaluate Your Profile</h3>
                 <form className="space-y-8">

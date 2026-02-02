@@ -2,7 +2,6 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import AIChatBot from './components/AIChatBot';
 import { Job, Testimonial } from './types';
 import { Loader2 } from 'lucide-react';
 import { supabase } from './services/supabase';
@@ -16,6 +15,7 @@ const Auth = lazy(() => import('./pages/Auth'));
 const StaticPage = lazy(() => import('./pages/StaticPage'));
 const AdminPanel = lazy(() => import('./pages/AdminPanel'));
 const AdminLogin = lazy(() => import('./pages/AdminLogin'));
+const AIChatBot = lazy(() => import('./components/AIChatBot'));
 
 const PageLoader = () => (
   <div className="flex-grow flex flex-col items-center justify-center min-h-[60vh] text-slate-400">
@@ -153,7 +153,9 @@ const App: React.FC = () => {
       <Footer onNavigate={navigate} siteConfig={siteConfig} />
 
       {/* AI Career Assistant */}
-      <AIChatBot />
+      <Suspense fallback={null}>
+        <AIChatBot />
+      </Suspense>
     </div>
   );
 };
