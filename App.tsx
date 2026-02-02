@@ -157,26 +157,28 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className={`flex flex-col min-h-screen ${loading ? 'overflow-hidden' : 'smooth-entry'}`}>
+    <>
       <Navbar
         currentPage={currentPage}
         onNavigate={navigate}
         userRole={isLoggedIn ? 'CANDIDATE' : 'GUEST'}
       />
 
-      <main className="flex-grow flex flex-col">
-        <Suspense fallback={<PageLoader />}>
-          {renderPage()}
-        </Suspense>
-      </main>
+      <div className={`flex flex-col min-h-screen ${loading ? 'overflow-hidden' : 'smooth-entry'}`}>
+        <main className="flex-grow flex flex-col pt-[72px]">
+          <Suspense fallback={<PageLoader />}>
+            {renderPage()}
+          </Suspense>
+        </main>
 
-      <Footer onNavigate={navigate} siteConfig={siteConfig} />
+        <Footer onNavigate={navigate} siteConfig={siteConfig} />
+      </div>
 
       {/* AI Career Assistant */}
       <Suspense fallback={null}>
         <AIChatBot />
       </Suspense>
-    </div>
+    </>
   );
 };
 

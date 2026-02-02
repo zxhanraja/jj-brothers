@@ -28,16 +28,16 @@ const AIChatBot: React.FC = () => {
     setIsLoading(true);
 
     const response = await getAIChatResponse(messages, userMsg);
-    
+
     setMessages(prev => [...prev, { role: 'model', parts: response || "Something went wrong. Try again." }]);
     setIsLoading(false);
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-[9999]">
+    <div className="fixed bottom-6 right-6 z-[2147483647] pointer-events-auto">
       {/* Brand-Themed Cute Robot Floating Button */}
       {!isOpen && (
-        <button 
+        <button
           onClick={() => setIsOpen(true)}
           className="relative group w-14 h-14 flex items-center justify-center transition-all duration-500 hover:scale-110 active:scale-95"
         >
@@ -57,7 +57,7 @@ const AIChatBot: React.FC = () => {
           <div className="bg-blue-900 p-4 text-white flex items-center justify-between relative overflow-hidden shrink-0">
             {/* Background Decoration - Added pointer-events-none to prevent blocking clicks */}
             <div className="absolute top-0 right-0 p-12 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none z-0"></div>
-            
+
             <div className="flex items-center gap-3 relative z-10">
               <div className="w-9 h-9 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center border border-white/20 shadow-inner">
                 <Bot className="w-5 h-5 text-amber-500" />
@@ -72,12 +72,12 @@ const AIChatBot: React.FC = () => {
             </div>
 
             {/* Close Button - Increased z-index and padding for reliability */}
-            <button 
+            <button
               type="button"
               onClick={(e) => {
                 e.stopPropagation();
                 setIsOpen(false);
-              }} 
+              }}
               className="relative z-20 p-2 -mr-1 hover:bg-white/10 rounded-xl transition-all flex items-center justify-center active:scale-90"
               aria-label="Close Chat"
             >
@@ -93,11 +93,10 @@ const AIChatBot: React.FC = () => {
                   <div className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 shadow-sm ${msg.role === 'user' ? 'bg-amber-100 text-amber-600' : 'bg-blue-900 text-amber-500'}`}>
                     {msg.role === 'user' ? <User className="w-3.5 h-3.5" /> : <Bot className="w-3.5 h-3.5" />}
                   </div>
-                  <div className={`p-3 rounded-xl text-[11px] sm:text-xs font-medium leading-relaxed shadow-sm ${
-                    msg.role === 'user' 
-                      ? 'bg-blue-900 text-white rounded-tr-none' 
-                      : 'bg-white text-slate-700 rounded-tl-none border border-slate-100'
-                  }`}>
+                  <div className={`p-3 rounded-xl text-[11px] sm:text-xs font-medium leading-relaxed shadow-sm ${msg.role === 'user'
+                    ? 'bg-blue-900 text-white rounded-tr-none'
+                    : 'bg-white text-slate-700 rounded-tl-none border border-slate-100'
+                    }`}>
                     {msg.parts}
                   </div>
                 </div>
@@ -123,13 +122,13 @@ const AIChatBot: React.FC = () => {
           {/* Input Area */}
           <form onSubmit={handleSend} className="p-3 bg-white border-t border-slate-100 shrink-0">
             <div className="relative flex items-center gap-2">
-              <input 
+              <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Type a message..."
                 className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 px-4 focus:outline-none focus:border-blue-900 text-xs font-bold transition-colors"
               />
-              <button 
+              <button
                 type="submit"
                 disabled={isLoading || !input.trim()}
                 className="w-10 h-10 bg-blue-900 text-white rounded-xl flex items-center justify-center hover:bg-slate-900 transition-all disabled:opacity-20 flex-shrink-0 active:scale-90"
