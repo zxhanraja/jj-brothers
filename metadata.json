@@ -1,0 +1,7 @@
+{
+  "name": "JJ Brothers job consultancy",
+  "description": "A high-performance, modern job portal specifically designed for the Gulf region, featuring AI-assisted job matching and a premium user experience.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
