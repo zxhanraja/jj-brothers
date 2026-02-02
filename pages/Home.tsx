@@ -212,7 +212,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate, testimonials }) => {
                 className="flex-shrink-0 flex items-center justify-center bg-slate-50 border border-slate-100 rounded-2xl hover:bg-amber-400 hover:border-amber-500 hover:scale-110 transition-all duration-300 p-6 min-w-[180px] shadow-sm"
               >
                 <img
-                  src={`https://logo.clearbit.com/${logo.domain}?size=200`}
+                  src={`https://logo.clearbit.com/${logo.domain}?size=512`}
                   alt={logo.name}
                   loading="lazy"
                   decoding="async"

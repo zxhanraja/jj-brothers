@@ -17,6 +17,7 @@
     body {
       font-family: 'Inter', sans-serif;
       scroll-behavior: smooth;
+      scrollbar-gutter: stable;
     }
 
     .custom-scrollbar::-webkit-scrollbar {
@@ -113,8 +114,9 @@
     }
 
     .animate-logo-cloud {
-      animation: scroll 30s linear infinite;
+      animation: scroll 10s linear infinite;
       will-change: transform;
+      transform: translate3d(0, 0, 0);
     }
 
     .animate-logo-cloud:hover {

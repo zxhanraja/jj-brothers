@@ -18,6 +18,23 @@ const AIChatBot: React.FC = () => {
     }
   }, [messages, isOpen]);
 
+  useEffect(() => {
+    if (isOpen) {
+      // Prevent body scroll and handle potential layout shifts
+      const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
+      document.body.style.overflow = 'hidden';
+      // If we don't have scrollbar-gutter: stable, we might need manual padding:
+      // document.body.style.paddingRight = `${scrollBarWidth}px`;
+    } else {
+      document.body.style.overflow = 'unset';
+      // document.body.style.paddingRight = '0px';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+      // document.body.style.paddingRight = '0px';
+    };
+  }, [isOpen]);
+
   const handleSend = async (e?: React.FormEvent) => {
     e?.preventDefault();
     if (!input.trim() || isLoading) return;
@@ -126,7 +143,7 @@ const AIChatBot: React.FC = () => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Type a message..."
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 px-4 focus:outline-none focus:border-blue-900 text-xs font-bold transition-colors"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 px-4 focus:outline-none focus:border-blue-900 text-[16px] sm:text-xs font-bold transition-colors"
               />
               <button
                 type="submit"
