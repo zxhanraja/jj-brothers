@@ -2,7 +2,7 @@
 import { Job, JobType, ExperienceLevel, Company } from './types';
 
 export const CATEGORIES = [
-  'Engineering', 'Information Technology', 'Hospitality', 'Healthcare', 
+  'Engineering', 'Information Technology', 'Hospitality', 'Healthcare',
   'Finance', 'Marketing', 'Education', 'Construction', 'Retail'
 ];
 
@@ -85,5 +85,31 @@ export const MOCK_JOBS: Job[] = [
     postedAt: '2024-05-18',
     category: 'Construction',
     featured: true
+  }
+];
+export const FAQS = [
+  {
+    question: "How long does the visa process typically take?",
+    answer: "The duration varies by country and job type. Typically, Gulf visas are processed in 30-45 days, while European work permits may take 2-4 months. We provide real-time updates through our dedicated tracking system."
+  },
+  {
+    question: "Do you provide job placement in countries other than the Gulf and Europe?",
+    answer: "Yes, we also have significant experience in placements for Canada and Australia, particularly in healthcare, engineering, and IT sectors. We are expanding our network to other regions as well."
+  },
+  {
+    question: "What documents are required to start my application?",
+    answer: "Initially, we need your updated resume, passport copy (front & back), and educational certificates. Depending on the job and country, additional documents like experience letters or PCC (Police Clearance Certificate) may be required later."
+  },
+  {
+    question: "Are your job placements legally verified?",
+    answer: "Absolutely. We pride ourselves on 100% legal transparency. Every job we offer is verified through official channels, ensuring full compliance with both Indian and international labor laws."
+  },
+  {
+    question: "Do you assist with housing and settling in the new country?",
+    answer: "Yes, our commitment doesn't end with a visa. We provide 'landing support' which includes assistance with finding accommodation, local transportation guidance, and help with initial documentation in the host country."
+  },
+  {
+    question: "How do I evaluate my profile for international opportunities?",
+    answer: "You can request a free profile evaluation through our website or visit our head office. Our experts will assess your skills and experience to match you with the best-paying global markets."
   }
 ];

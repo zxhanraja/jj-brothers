@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import {
   Search, MapPin, Briefcase, Globe, Award,
@@ -7,6 +6,7 @@ import {
   ChevronLeft, FileCheck, ExternalLink, ScrollText
 } from 'lucide-react';
 import { EUROPE_HOT_JOBS, TRUST_STATS, GULF_LOCATIONS } from '../constants';
+import FAQ from '../components/FAQ';
 import { Testimonial } from '../types';
 
 interface HomeProps {
@@ -508,6 +508,9 @@ const Home: React.FC<HomeProps> = ({ onNavigate, testimonials }) => {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <FAQ />
     </div>
   );
 };
