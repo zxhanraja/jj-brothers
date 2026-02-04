@@ -56,11 +56,25 @@ const App: React.FC = () => {
 
     // Initial Data & Component Fetch
     const init = async () => {
+      const preloadVideo = (src: string): Promise<void> => {
+        return new Promise((resolve) => {
+          const video = document.createElement('video');
+          video.src = src;
+          video.muted = true;
+          video.preload = 'auto';
+          video.oncanplaythrough = () => resolve();
+          video.onerror = () => resolve(); // Resolve on error too to not block app
+          // Timeout to ensure we don't block forever if video is slow/stuck
+          setTimeout(resolve, 5000);
+        });
+      };
+
       try {
         await Promise.all([
           fetchInitialData(),
           // Eagerly load Home to avoid Suspense flash on first render
-          import('./pages/Home')
+          import('./pages/Home'),
+          preloadVideo("https://ik.imagekit.io/ioktbcewp/Untitled%20video%20-%20Made%20with%20Clipchamp%20(2).mp4")
         ]);
       } catch (err) {
         console.error("Init Error:", err);
