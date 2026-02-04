@@ -75,6 +75,7 @@ const GULF_VISA_SUCCESS_LOOP = [
 
 const Home: React.FC<HomeProps> = ({ onNavigate, testimonials }) => {
   const [heroSearch, setHeroSearch] = useState('');
+  const [videoFinished, setVideoFinished] = useState(false);
 
   const displayReviews = useMemo(() => {
     const list = testimonials.length > 0 ? testimonials : DEFAULT_TESTIMONIALS;
@@ -170,6 +171,16 @@ const Home: React.FC<HomeProps> = ({ onNavigate, testimonials }) => {
             </div>
             <div className="w-full lg:w-2/5 relative animate-fade-in-up delay-300">
               <div className="relative rounded-[3rem] md:rounded-[5rem] overflow-hidden shadow-2xl border border-white/10 group aspect-[4/5] transform hover:scale-[1.02] transition-transform duration-700">
+                <div className={`absolute inset-0 z-30 bg-black transition-opacity duration-1000 ${videoFinished ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+                  <video
+                    src="https://ik.imagekit.io/ioktbcewp/Untitled%20video%20-%20Made%20with%20Clipchamp%20(2).mp4"
+                    className="w-full h-full object-cover"
+                    autoPlay
+                    muted
+                    playsInline
+                    onEnded={() => setVideoFinished(true)}
+                  />
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent z-10"></div>
                 <img
                   src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800"
